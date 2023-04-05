@@ -52,6 +52,16 @@
 </head>
 <body>
     <div class="container-md">
+        <form action="" method="get">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="1" name="park" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Solo hotel che hanno un parcheggio
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary">Applica</button>
+        </form>
+
         <table class="table">
             <thead>
                 <tr>
@@ -64,9 +74,22 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach($hotels as $x => $hotel){ ?>
-                <?php echo "<tr>"; ?>
+                <?php foreach($hotels as $x => $hotel){ 
+                    echo "<tr>"; 
+                    if ($_GET['park']==1 && $hotel["parking"]) {?>
+                
                 <?php echo   '<th scope="row">'.($x+1).'</th>'; ?>
+                <?php echo   '<td>'.$hotel["name"].'</td>' ?>
+                <?php echo   '<td>'.$hotel["description"].'</td>' ?>
+                <?php
+                    echo '<td>Si</td>';
+                ?>
+                <?php echo   '<td>'.$hotel["vote"].'</td>' ?>
+                <?php echo   '<td>'.$hotel["distance_to_center"].'</td>' ?>
+                
+                <?php } else if($_GET['park']== ''){?> 
+
+                    <?php echo   '<th scope="row">'.($x+1).'</th>'; ?>
                 <?php echo   '<td>'.$hotel["name"].'</td>' ?>
                 <?php echo   '<td>'.$hotel["description"].'</td>' ?>
                 <?php
@@ -75,18 +98,12 @@
                 ?>
                 <?php echo   '<td>'.$hotel["vote"].'</td>' ?>
                 <?php echo   '<td>'.$hotel["distance_to_center"].'</td>' ?>
+                    
+                
+                <?php } ?>
                 <?php echo "</tr>"; ?>
                 <?php } ?>
         </table>
-    <?php 
-        foreach($hotels as $x => $hotel) {
-            echo $hotel["name"];
-            echo $hotel["description"];
-            echo $hotel["parking"];
-            echo $hotel["vote"];
-            echo $hotel["distance_to_center"];
-        }
-    ?>
     </div>
 </body>
 </html>
