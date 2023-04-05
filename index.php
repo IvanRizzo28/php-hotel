@@ -52,15 +52,41 @@
 </head>
 <body>
     <div class="container-md">
-            <?php 
-                foreach($hotels as $hotel) {
-                    echo $hotel["name"]."<br>";
-                    echo $hotel["description"]."<br>";
-                    echo $hotel["parking"]."<br>";
-                    echo $hotel["vote"]."<br>";
-                    echo $hotel["distance_to_center"]."<br><hr><br>";
-                }
-            ?>
+        <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">description</th>
+                <th scope="col">parking</th>
+                <th scope="col">vote</th>
+                <th scope="col">distance_to_center</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($hotels as $x => $hotel){ ?>
+                <?php echo "<tr>"; ?>
+                <?php echo   '<th scope="row">'.($x+1).'</th>'; ?>
+                <?php echo   '<td>'.$hotel["name"].'</td>' ?>
+                <?php echo   '<td>'.$hotel["description"].'</td>' ?>
+                <?php
+                    if($hotel["parking"]) echo '<td>Si</td>';
+                    else  echo '<td>No</td>';
+                ?>
+                <?php echo   '<td>'.$hotel["vote"].'</td>' ?>
+                <?php echo   '<td>'.$hotel["distance_to_center"].'</td>' ?>
+                <?php echo "</tr>"; ?>
+                <?php } ?>
+        </table>
+    <?php 
+        foreach($hotels as $x => $hotel) {
+            echo $hotel["name"];
+            echo $hotel["description"];
+            echo $hotel["parking"];
+            echo $hotel["vote"];
+            echo $hotel["distance_to_center"];
+        }
+    ?>
     </div>
 </body>
 </html>
